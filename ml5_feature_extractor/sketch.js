@@ -1,4 +1,5 @@
 let mobilenet;
+let classifier;
 let video;
 let label = '';
 
@@ -6,6 +7,11 @@ let label = '';
 function modelReady() {
 	console.log("Model is ready!!!");
 }
+
+function videoReady() {
+	console.log("Video is ready!!!");
+}
+
 
 function gotResults(error, results) {
 	if (error) {
@@ -22,7 +28,8 @@ function setup() {
 	video = createCapture(VIDEO);
 	video.hide();
 	background(0);
-	mobilenet = ml5.featureExtractor('Mobilenet', gotResults)
+	mobilenet = ml5.featureExtractor('Mobilenet', gotResults);
+	classifier = mobilenet.classification(video, videoReady)
 }
 
 function draw() {
