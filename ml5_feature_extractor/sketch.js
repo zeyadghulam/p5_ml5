@@ -13,12 +13,14 @@ function videoReady() {
 }
 
 
+
 function gotResults(error, results) {
 	if (error) {
 		console.error(error);
 	} else {
 		label = results[0].className;
 		mobilenet.predict(gotResults);
+		classifier.classify(gotResults);
 	}
 }
 
